@@ -37,3 +37,11 @@ class Form_Submission(models.Model):
     
     def __str__(self):
         return self.name
+
+class Message_From_CEO(models.Model):
+    Ceo_name=models.CharField(max_length=100)
+    message=models.TextField(blank=False, null=False)
+    image=models.ImageField(upload_to='ceo_messages/', null=True, blank=True)
+    
+    def __str__(self):
+        return self.Ceo_name

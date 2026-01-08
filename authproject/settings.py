@@ -15,6 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIRS=BASE_DIR/'templates'
+STATIC_DIRS=BASE_DIR/'static'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -121,6 +122,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS=[STATIC_DIRS,]
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
@@ -134,3 +136,5 @@ ACCOUNT_SIGNUP_FIELDS=['username*','email*','password1*','password2*']
 ACCOUNT_LOGIN_METHODS={'email'}
 ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED=True
 ACCOUNT_SIGNUP_FORM_CLASS='authapp.forms.CustomSignupForm'
+MEDIA_URL='/media/'
+MEDIA_ROOT=BASE_DIR/'media'

@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import User
 from .models import UserProfile
-from .models import Academic_Overview, Today_Schedule, Form_Submission
+from .models import Academic_Overview, Today_Schedule, Form_Submission, Message_From_CEO
 # Register your models here.
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
@@ -12,6 +12,7 @@ class UserProfileAdmin(admin.ModelAdmin):
 class AcademicOverviewAdmin(admin.ModelAdmin):
     list_display = ('user', 'Current_GPA', 'credits_completed', 'current_semester')
     search_fields = ('user__username', 'user__email', 'current_semester')
+    
 @admin.register(Today_Schedule)
 class TodayScheduleAdmin(admin.ModelAdmin):
     list_display = ('user', 'subject_name', 'professor_name', 'start_time', 'end_time')
@@ -21,3 +22,8 @@ class TodayScheduleAdmin(admin.ModelAdmin):
 class FormSubmissionAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'message')
     search_fields = ('name', 'email', 'subject')
+    
+@admin.register(Message_From_CEO)
+class MessageFromCEOAdmin(admin.ModelAdmin):
+    list_display=('Ceo_name','message')
+    search_fields = ('Ceo_name',)

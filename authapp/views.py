@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from allauth.account.views import SignupView
 from allauth.account.forms import app_settings
-from .models import UserProfile, Academic_Overview, Today_Schedule, Form_Submission
+from .models import UserProfile, Academic_Overview, Today_Schedule, Form_Submission, Message_From_CEO
 class CustomSignupView(SignupView):
     def form_valid(self,form):
         response=super().form_valid(form)
@@ -14,6 +14,10 @@ class CustomSignupView(SignupView):
         return response
 
 def home_view(request):
+    msg_ceo=Message_From_CEO.objects.all()
+    context={
+        'msg_ceo':msg_ceo,
+    }
     if request.method == 'POST':
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -28,7 +32,7 @@ def home_view(request):
                 message=message
             )
 
-    return render(request, 'authapp/home.html')
+    return render(request, 'authapp/home.html', context=context)
 
 @login_required
 def portol_view(request):

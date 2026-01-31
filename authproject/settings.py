@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'authapp',
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
 ]
 SITE_ID = 1
 
@@ -138,3 +141,22 @@ ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED=True
 ACCOUNT_SIGNUP_FORM_CLASS='authapp.forms.CustomSignupForm'
 MEDIA_URL='/media/'
 MEDIA_ROOT=BASE_DIR/'media'
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+    },
+
+    'github': {
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+    },
+}

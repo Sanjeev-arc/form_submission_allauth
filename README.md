@@ -1,0 +1,2 @@
+This is only the demo of the django all auth. In this repo i have made the simple website regarding the features of contact form submission and the admin can see the deatils and also he can update remove and create the users.
+Morever, i have used the django all auth module to login the secret page[portal] and if the user is authenticated he can change email address , password and so on. i have recently add the third party account login, i.e google

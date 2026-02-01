@@ -55,3 +55,12 @@ class UpcomingDeadlines(models.Model):
      
      def __str__(self):
          return self.course
+     
+class Notices(models.Model):
+    title=models.CharField(max_length=200)
+    message=models.TextField(blank=False, null=False)
+    date_posted=models.DateField(auto_now_add=True)
+    is_active=models.BooleanField(default=True) 
+    image=models.ImageField(upload_to='notices/', null=True, blank=True)
+    def __str__(self):
+        return self.title

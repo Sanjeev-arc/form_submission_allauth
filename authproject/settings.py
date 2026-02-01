@@ -143,6 +143,7 @@ MEDIA_URL='/media/'
 MEDIA_ROOT=BASE_DIR/'media'
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
+        'EMAIL_AUTHENTICATION': True,   
         'SCOPE': [
             'profile',
             'email',
@@ -160,3 +161,4 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
     },
 }
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT=True

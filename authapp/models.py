@@ -45,3 +45,13 @@ class Message_From_CEO(models.Model):
     
     def __str__(self):
         return self.Ceo_name
+class UpcomingDeadlines(models.Model):
+     user=models.ForeignKey(User, on_delete=models.CASCADE)
+     Assingment=models.CharField(max_length=200)
+     course=models.CharField(max_length=100)
+     DueDate=models.DateField()
+     status=models.CharField(max_length=50)
+     Actions=models.CharField(max_length=100)
+     
+     def __str__(self):
+         return self.course

@@ -1,7 +1,8 @@
+from tkinter.messagebox import IGNORE
 from django.contrib import admin
 from django.contrib.auth.models import User
 from .models import UserProfile
-from .models import Academic_Overview, Today_Schedule, Form_Submission, Message_From_CEO
+from .models import Academic_Overview, Today_Schedule, Form_Submission, Message_From_CEO, UpcomingDeadlines
 # Register your models here.
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
@@ -27,3 +28,8 @@ class FormSubmissionAdmin(admin.ModelAdmin):
 class MessageFromCEOAdmin(admin.ModelAdmin):
     list_display=('Ceo_name','message')
     search_fields = ('Ceo_name',)
+@admin.register(UpcomingDeadlines)
+class UpcomingDeadlinesAdmin(admin.ModelAdmin):
+    list_display = ('user', 'Assingment', 'course', 'DueDate', 'status', 'Actions')
+    search_fields = ('user__username', 'user__email', 'Assingment', 'course')
+    list_filter = ('DueDate', 'status')

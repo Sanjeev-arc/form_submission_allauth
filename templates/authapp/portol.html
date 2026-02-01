@@ -155,6 +155,7 @@
       <h2 class="text-xl font-bold text-gray-800">Upcoming Deadlines</h2>
       <span class="text-sm text-gray-500">Next 7 days</span>
     </div>
+  
     <div class="overflow-x-auto">
       <table class="w-full">
         <thead>
@@ -167,42 +168,25 @@
           </tr>
         </thead>
         <tbody>
+            {%for deadline in deadlines %}
           <tr class="border-b hover:bg-gray-50">
-            <td class="py-4 font-medium text-gray-800">Final Project</td>
-            <td class="py-4 text-gray-600">CS 101</td>
-            <td class="py-4 text-gray-600">Tomorrow, 11:59 PM</td>
+            <td class="py-4 font-medium text-gray-800">{{deadline.Assingment}}</td>
+            <td class="py-4 text-gray-600">{{deadline.course}}</td>
+            <td class="py-4 text-gray-600">{{deadline.DueDate}}  </td>
             <td class="py-4">
-              <span class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-800">Urgent</span>
+              <span class="px-3 py-1 text-xs rounded-full bg-red-100 text-red-800">{{deadline.status}}</span>
             </td>
             <td class="py-4">
-              <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Submit →</button>
-            </td>
-          </tr>
-          <tr class="border-b hover:bg-gray-50">
-            <td class="py-4 font-medium text-gray-800">Research Paper</td>
-            <td class="py-4 text-gray-600">ENG 201</td>
-            <td class="py-4 text-gray-600">Dec 15, 2024</td>
-            <td class="py-4">
-              <span class="px-3 py-1 text-xs rounded-full bg-yellow-100 text-yellow-800">In Progress</span>
-            </td>
-            <td class="py-4">
-              <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Continue →</button>
+              <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">{{deadline.Actions}}</button>
             </td>
           </tr>
-          <tr class="hover:bg-gray-50">
-            <td class="py-4 font-medium text-gray-800">Lab Report</td>
-            <td class="py-4 text-gray-600">PHY 102</td>
-            <td class="py-4 text-gray-600">Dec 18, 2024</td>
-            <td class="py-4">
-              <span class="px-3 py-1 text-xs rounded-full bg-green-100 text-green-800">Submitted</span>
-            </td>
-            <td class="py-4">
-              <button class="text-gray-400 text-sm font-medium cursor-not-allowed">View</button>
-            </td>
-          </tr>
+          {% empty %}
+      <p class="text-gray-500 italic">No upcoming deadlines.</p>
+    {% endfor %} 
         </tbody>
       </table>
     </div>
+    
   </div>
 
   <!-- Recent Activity -->
@@ -215,28 +199,13 @@
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
           </svg>
         </div>
+        {% for deadline in deadlines%}
         <div class="flex-1">
-          <p class="text-gray-800">Submitted assignment for Mathematics 101</p>
-          <p class="text-sm text-gray-500">2 hours ago</p>
+          <p class="text-gray-800">Submitted assignment for {{deadline.course}} </p>
+          <p class="text-sm text-gray-500">{{deadline.Actions}}</p>
         </div>
-      </div>
-      <div class="flex items-start space-x-3">
-        <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
-          <svg class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-        <div class="flex-1">
-          <p class="text-gray-800">Grade received for Computer Science Midterm: A</p>
-          <p class="text-sm text-gray-500">Yesterday, 3:45 PM</p>
-        </div>
-      </div>
-      <div class="flex items-start space-x-3">
-        <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-          <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"/>
-          </svg>
-        </div>
+        {% endfor %}
+    
         <div class="flex-1">
           <p class="text-gray-800">New announcement posted: Winter Break Schedule</p>
           <p class="text-sm text-gray-500">2 days ago</p>

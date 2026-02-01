@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from allauth.account.views import SignupView
 from allauth.account.forms import app_settings
-from .models import UserProfile, Academic_Overview, Today_Schedule, Form_Submission, Message_From_CEO
+from .models import UserProfile, Academic_Overview, Today_Schedule, Form_Submission, Message_From_CEO, UpcomingDeadlines
 class CustomSignupView(SignupView):
     def form_valid(self,form):
         response=super().form_valid(form)
@@ -38,9 +38,11 @@ def home_view(request):
 def portol_view(request):
     academic = Academic_Overview.objects.filter(user=request.user).first()
     schedule = Today_Schedule.objects.filter(user=request.user).first()
+    deadlines=UpcomingDeadlines.objects.filter(user=request.user).all()
     context={
         'academic_overview': academic,
         'schedule': schedule,
+        'deadlines': deadlines,
     }
 
     return render(request, 'authapp/portol.html', context=context)
